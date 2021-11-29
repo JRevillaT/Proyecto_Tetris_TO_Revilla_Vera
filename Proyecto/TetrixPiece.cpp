@@ -2,6 +2,14 @@
 
 #include <QtCore>
 
+/*
+ * Nombres:
+ *  -Jimy Gabriel Revilla Tellez
+ *  -Jose Miguel Vera Mamani
+ *
+ *  Repositorio: https://github.com/JRevillaT/Proyecto_Tetris_TO_Revilla_Vera
+ */
+
 //! [0]
 void TetrixPiece::setRandomShape()
 {

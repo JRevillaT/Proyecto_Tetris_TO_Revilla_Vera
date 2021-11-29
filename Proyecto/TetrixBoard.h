@@ -11,6 +11,14 @@ QT_BEGIN_NAMESPACE
 class QLabel;
 QT_END_NAMESPACE
 
+/*
+ * Nombres:
+ *  -Jimy Gabriel Revilla Tellez
+ *  -Jose Miguel Vera Mamani
+ *
+ *  Repositorio: https://github.com/JRevillaT/Proyecto_Tetris_TO_Revilla_Vera
+ */
+
 //! [0]
 class TetrixBoard : public QFrame
 {

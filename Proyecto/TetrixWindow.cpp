@@ -8,6 +8,14 @@
 #include <QLCDNumber>
 #include <QPushButton>
 
+/*
+ * Nombres:
+ *  -Jimy Gabriel Revilla Tellez
+ *  -Jose Miguel Vera Mamani
+ *
+ *  Repositorio: https://github.com/JRevillaT/Proyecto_Tetris_TO_Revilla_Vera
+ */
+
 TetrixWindow::TetrixWindow(QWidget *parent)
     :QWidget(parent), board(new TetrixBoard){
 //! [0]
