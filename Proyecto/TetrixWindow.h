@@ -36,14 +36,14 @@ public:
 private:
     QLabel *createLabel(const QString &text);
 
-    TetrixBoard *board;     // Tablero
-    QLabel *nextPieceLabel;
-    QLCDNumber *scoreLcd;
-    QLCDNumber *levelLcd;
-    QLCDNumber *linesLcd;
-    QPushButton *startButton;
-    QPushButton *quitButton;
-    QPushButton *pauseButton;
+    TetrixBoard *tablero;     // Tablero
+    QLabel *siguientePieza; // Siguiente pieza
+    QLCDNumber *puntuacion;   // Puntaje de juego
+    QLCDNumber *nivel;   // Puntaje en nivel
+    QLCDNumber *linesLcd;   // lineas en tablero
+    QPushButton *botonIniciar;  // Boton de iniciar juego
+    QPushButton *botonSalir;   // Boton de cerrar juego
+    QPushButton *botonPausar;  // Boton de pausar juego
 };
 
 
