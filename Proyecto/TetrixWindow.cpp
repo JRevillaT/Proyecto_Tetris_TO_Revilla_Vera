@@ -1,6 +1,5 @@
-
 #include "TetrixBoard.h"
-#include "TetrixWindow.h"
+#include "tetrixwindow.h"
 
 #include <QCoreApplication>
 #include <QGridLayout>
@@ -17,12 +16,12 @@
  */
 
 TetrixWindow::TetrixWindow(QWidget *parent)
-    :QWidget(parent), board(new TetrixBoard){
+    :QWidget(parent), tablero(new TetrixBoard){
 //! [0]
     nextPieceLabel = new QLabel;
     nextPieceLabel->setFrameStyle(QFrame::Box | QFrame::Raised);
     nextPieceLabel->setAlignment(Qt::AlignCenter);
-    board->setNextPieceLabel(nextPieceLabel);
+    tablero->setNextPieceLabel(nextPieceLabel);
 //! [1]
     scoreLcd = new QLCDNumber(5);
     scoreLcd->setSegmentStyle(QLCDNumber::Filled);
@@ -42,16 +41,16 @@ TetrixWindow::TetrixWindow(QWidget *parent)
     pauseButton->setFocusPolicy(Qt::NoFocus);
 //! [3] //! [4]
 
-    connect(startButton, &QPushButton::clicked, board, &TetrixBoard::start);
+    connect(startButton, &QPushButton::clicked, tablero, &TetrixBoard::start);
 //! [4] //! [5]
     connect(quitButton , &QPushButton::clicked, qApp, &QCoreApplication::quit);
-    connect(pauseButton, &QPushButton::clicked, board, &TetrixBoard::pause);
+    connect(pauseButton, &QPushButton::clicked, tablero, &TetrixBoard::pause);
 #if __cplusplus >= 201402L
-    connect(board, &TetrixBoard::scoreChanged,
+    connect(tablero, &TetrixBoard::scoreChanged,
             scoreLcd, qOverload<int>(&QLCDNumber::display));
-    connect(board, &TetrixBoard::levelChanged,
+    connect(tablero, &TetrixBoard::levelChanged,
             levelLcd, qOverload<int>(&QLCDNumber::display));
-    connect(board, &TetrixBoard::linesRemovedChanged,
+    connect(tablero, &TetrixBoard::linesRemovedChanged,
             linesLcd, qOverload<int>(&QLCDNumber::display));
 #else
     connect(board, &TetrixBoard::scoreChanged,
@@ -70,7 +69,7 @@ TetrixWindow::TetrixWindow(QWidget *parent)
     layout->addWidget(createLabel(tr("LEVEL")), 2, 0);
     layout->addWidget(levelLcd, 3, 0);
     layout->addWidget(startButton, 4, 0);
-    layout->addWidget(board, 0, 1, 6, 1);
+    layout->addWidget(tablero, 0, 1, 6, 1);
     layout->addWidget(createLabel(tr("SCORE")), 0, 2);
     layout->addWidget(scoreLcd, 1, 2);
     layout->addWidget(createLabel(tr("LINES REMOVED")), 2, 2);
@@ -91,4 +90,3 @@ QLabel *TetrixWindow::createLabel(const QString &text){
     return label;
 }
 //! [7]
-
