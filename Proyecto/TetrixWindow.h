@@ -18,18 +18,25 @@ class TetrixBoard;
  *  Repositorio: https://github.com/JRevillaT/Proyecto_Tetris_TO_Revilla_Vera
  */
 
-//! [0]
+/*
+ * Esta clase se utiliza para mostrar la información del juego y contiene el área de juego
+ * en la cual vamos a trabajar.
+ */
+
 class TetrixWindow : public QWidget{
     Q_OBJECT
 
 public:
     TetrixWindow(QWidget *parent = nullptr);
 
-
+/*
+ * Usaremos variables miembro privadas para el tablero, algunos widgets de visualización y
+ * botones para permitir al usuario iniciar un nuevo juego, pausar el juego actual o salir.
+ */
 private:
     QLabel *createLabel(const QString &text);
 
-    TetrixBoard *board;
+    TetrixBoard *board;     // Tablero
     QLabel *nextPieceLabel;
     QLCDNumber *scoreLcd;
     QLCDNumber *levelLcd;
@@ -38,6 +45,6 @@ private:
     QPushButton *quitButton;
     QPushButton *pauseButton;
 };
-//! [0]
+
 
 #endif
