@@ -1,5 +1,5 @@
-#ifndef TETRIXWINDOW_H
-#define TETRIXWINDOW_H
+#ifndef VENTANA_H
+#define VENTANA_H
 
 #include <QWidget>
 
@@ -19,22 +19,22 @@ class TetrixBoard;
  */
 
 /*
- * Esta clase se utiliza para mostrar la información del juego y contiene el área de juego
+ * Esta clase se utiliza para mostrar la informaciÃ³n del juego y contiene el Ã¡rea de juego
  * en la cual vamos a trabajar.
  */
 
-class TetrixWindow : public QWidget{
+class TWindow : public QWidget{
     Q_OBJECT
 
 public:
-    TetrixWindow(QWidget *parent = nullptr);
+    TWindow(QWidget *parent = nullptr);
 
 /*
- * Usaremos variables miembro privadas para el tablero, algunos widgets de visualización y
+ * Usaremos variables miembro privadas para el tablero, algunos widgets de visualizaciÃ³n y
  * botones para permitir al usuario iniciar un nuevo juego, pausar el juego actual o salir.
  */
 private:
-    QLabel *createLabel(const QString &text);
+    QLabel *crearLabel(const QString &text);
 
     TetrixBoard *tablero;     // Tablero
     QLabel *siguientePieza; // Siguiente pieza
