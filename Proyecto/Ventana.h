@@ -8,7 +8,7 @@ class QLCDNumber;
 class QLabel;
 class QPushButton;
 QT_END_NAMESPACE
-class TetrixBoard;
+class TTablero;
 
 /*
  * Nombres:
@@ -36,7 +36,7 @@ public:
 private:
     QLabel *crearLabel(const QString &text);
 
-    TetrixBoard *tablero;     // Tablero
+    TTablero*tablero;     // Tablero
     QLabel *siguientePieza; // Siguiente pieza
     QLCDNumber *puntuacion;   // Puntaje de juego
     QLCDNumber *nivel;   // Puntaje en nivel
