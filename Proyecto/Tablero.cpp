@@ -82,7 +82,7 @@ void TTablero::pausar()
         temporizador.start(tiempoDeEspera(), this);
     }
     update();
-//! [5] //! [6]
+//! [5]
 }
 //! [6]
 
@@ -354,11 +354,13 @@ bool TTablero::movimiento(const TPieza &newPiece, int newX, int newY)
 //! [36]
 void TTablero::dibujar(QPainter &painter, int x, int y, formaDeMatriz shape)
 {
+    //Matriz de colores hexadecimales
     static constexpr QRgb colorTable[8] = {
         0x000000, 0xCC6666, 0x66CC66, 0x6666CC,
-        0xCCCC66, 0xCC66CC, 0x66CCCC, 0xDAAA00
+        0xCCCC66, 0xCC66CC, 0x66CCCC, 0x5C5353
     };
 
+    //Una vez se haya seleccionado el color, procederemos a crear el rectangulo para los colores
     QColor color = colorTable[int(shape)];
     painter.fillRect(x + 1, y + 1, anchoCuadrado() - 2, alturaCuadrado() - 2,
                      color);
@@ -369,8 +371,9 @@ void TTablero::dibujar(QPainter &painter, int x, int y, formaDeMatriz shape)
 
     painter.setPen(color.darker());
     painter.drawLine(x + 1, y + alturaCuadrado() - 1,
-                     x + anchoCuadrado() - 1, y + alturaCuadrado() - 1);
+                     x + anchoCuadrado() - 10, y + alturaCuadrado() - 1);
     painter.drawLine(x + anchoCuadrado() - 1, y + alturaCuadrado() - 1,
                      x + anchoCuadrado() - 1, y + 1);
 }
 //! [36]
+///////////////////Cambio -10
