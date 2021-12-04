@@ -1,4 +1,4 @@
-#include "TetrixBoard.h"
+#include "Tablero.h"
 #include "Ventana.h"
 
 #include <QCoreApplication>
@@ -16,41 +16,51 @@
  */
 
 TWindow::TWindow(QWidget *parent)
-    :QWidget(parent), tablero(new TetrixBoard){
-
+    :QWidget(parent), tablero(new TTablero){
+    // Creando el campo de la siguiente pieza
     siguientePieza = new QLabel;
     siguientePieza->setFrameStyle(QFrame::Box | QFrame::Raised);
     siguientePieza->setAlignment(Qt::AlignCenter);
-    tablero->setNextPieceLabel(siguientePieza);
+    // Asignando la siguiente pieza en el rectangulo del tablero
+    tablero->setPiezaSiguiente(siguientePieza);
 
+    // Creando el campo de puntuacion
     puntuacion = new QLCDNumber(5);
     puntuacion->setSegmentStyle(QLCDNumber::Filled);
 
+    // Creando el campo de nivel
     nivel = new QLCDNumber(2);
     nivel->setSegmentStyle(QLCDNumber::Filled);
     linesLcd = new QLCDNumber(5);
     linesLcd->setSegmentStyle(QLCDNumber::Filled);
 
-
+    // Creando el boton de iniciar
     botonIniciar = new QPushButton(tr("&Start"));
     botonIniciar->setFocusPolicy(Qt::NoFocus);
+
+    // Creando el boton de salir
     botonSalir = new QPushButton(tr("&Quit"));
     botonSalir->setFocusPolicy(Qt::NoFocus);
-    botonPausar = new QPushButton(tr("&Pause"));
 
+    // Creando el boton de pausar
+    botonPausar = new QPushButton(tr("&Pause"));
     botonPausar->setFocusPolicy(Qt::NoFocus);
 
+    // Conexion de click del teclado con el boton de iniciar del tablero
+    connect(botonIniciar, &QPushButton::clicked, tablero, &TTablero::iniciar);
 
-    connect(botonIniciar, &QPushButton::clicked, tablero, &TetrixBoard::start);
-
+    // Conexion de click del teclado con el boton de salir del tablero
     connect(botonSalir , &QPushButton::clicked, qApp, &QCoreApplication::quit);
-    connect(botonPausar, &QPushButton::clicked, tablero, &TetrixBoard::pause);
+
+    // Conexion de click del teclado con el boton de pausar del tablero
+    connect(botonPausar, &QPushButton::clicked, tablero, &TTablero::pausar);
+
 #if __cplusplus >= 201402L
-    connect(tablero, &TetrixBoard::scoreChanged,
+    connect(tablero, &TTablero::puntuacionCambiada,
             puntuacion, qOverload<int>(&QLCDNumber::display));
-    connect(tablero, &TetrixBoard::levelChanged,
+    connect(tablero, &TTablero::nivelCambiado,
             nivel, qOverload<int>(&QLCDNumber::display));
-    connect(tablero, &TetrixBoard::linesRemovedChanged,
+    connect(tablero, &TTablero::lineasEliminadas,
             linesLcd, qOverload<int>(&QLCDNumber::display));
 #else
     connect(board, &TetrixBoard::scoreChanged,
