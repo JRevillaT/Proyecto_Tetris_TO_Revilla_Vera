@@ -110,8 +110,10 @@ void TTablero::easy(){
     temporizador.start(tiempoDeEspera(), this);
 }
 
+// Funcion para mostrar el mensaje de ayuda al hacer click
 void TTablero::ayuda(){
-
+    QString text = "Ventana de Ayuda\nPara saber mas acerca de como usar este juego y su implementacion vaya al siguiente enlace:\nhttps://acortar.link/3dfsZb";
+    QMessageBox::information(this, "Ayuda de Tetris", text, QMessageBox::Ok);
 }
 //! [6]
 
