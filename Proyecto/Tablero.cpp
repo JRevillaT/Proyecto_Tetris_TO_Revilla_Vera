@@ -84,6 +84,19 @@ void TTablero::pausar()
     update();
 //! [5]
 }
+
+void TTablero::bastard()
+{
+
+}
+
+void TTablero::easy(){
+
+}
+
+void TTablero::ayuda(){
+
+}
 //! [6]
 
 //! [7]
@@ -96,7 +109,7 @@ void TTablero::paintEvent(QPaintEvent *event)
 //! [7]
 
     if (enPausa) {
-        painter.drawText(rect, Qt::AlignCenter, tr("Pause"));
+        painter.drawText(rect, Qt::AlignCenter, tr("Juego Pausado"));
         return;
     }
 
@@ -357,8 +370,10 @@ void TTablero::dibujar(QPainter &painter, int x, int y, formaDeMatriz shape)
 {
     //Matriz de colores hexadecimales
     static constexpr QRgb colorTable[8] = {
-        0x000000, 0xCC6666, 0x66CC66, 0x6666CC,
-        0xCCCC66, 0xCC66CC, 0x66CCCC, 0x5C5353
+        //0x000000, 0xCC6666, 0x66CC66, 0x6666CC,
+        //0xCCCC66, 0xCC66CC, 0x66CCCC, 0x5C5353
+        0x000000, 0xbd1111, 0x24d424, 0x1c1cd9,
+        0xa8a832, 0xbd17bd, 0x24d6d6, 0x5C5353
     };
 
     //Una vez se haya seleccionado el color, procederemos a crear el rectangulo para los colores
