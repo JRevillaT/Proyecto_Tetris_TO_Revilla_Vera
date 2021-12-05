@@ -38,6 +38,9 @@ public:
 public slots: // Se utiliozara slots para una mejor comunicacion entre objetos.
     void iniciar(); // Funcion de iniciar el juego
     void pausar(); // Funcion de pausar el juego
+    void bastard(); // modo bastard
+    void easy(); // modo facil
+    void ayuda(); // ayuda descripcion
 
 signals: // Se utilizaran signals para una mejor comunicacion entre objetos.
     void puntuacionCambiada(int score);
