@@ -12,7 +12,7 @@
  *  Repositorio: https://github.com/JRevillaT/Proyecto_Tetris_TO_Revilla_Vera
  */
 
-//! [0]
+//al reiniciar el juego, el tablero debe estar limpio para la proxima partida, ademas de generar las piezas
 TTablero::TTablero(QWidget *parent)
     : QFrame(parent), empezar(false), enPausa(false)
 {
@@ -24,14 +24,14 @@ TTablero::TTablero(QWidget *parent)
 }
 //! [0]
 
-//! [1]
+//Aqui pasaremos la sgte pieza(del frame de sgte a pieza al tablero de juego)
 void TTablero::setPiezaSiguiente(QLabel *label)
 {
     siguientePieza = label;
 }
 //! [1]
 
-//! [2]
+//Aqui definimos tanto el largo como el acho del cubito que forma la figura
 QSize TTablero::sizeHint() const
 {
     return QSize(ancho * 15 + frameWidth() * 2,
@@ -46,7 +46,7 @@ QSize TTablero::minimumSizeHint() const
 }
 //! [3]
 
-//! [4]
+//Al iniciar el juego todos los valores se deben iniciar en 0, asi como definir las cantidades como la puntuacion o lineas eliminadas iniciales en 0
 void TTablero::iniciar()
 {
     if (enPausa)
@@ -69,7 +69,7 @@ void TTablero::iniciar()
 }
 //! [4]
 
-//! [5]
+//Matodo para pausar el tablero
 void TTablero::pausar()
 {
     if (!empezar)
@@ -129,7 +129,7 @@ void TTablero::paintEvent(QPaintEvent *event)
 }
 //! [12]
 
-//! [13]
+//Con este metodo controlamos los eventos que suceden cuando presionamos las teclas de juego
 void TTablero::keyPressEvent(QKeyEvent *event)
 {
     if (!empezar || enPausa || curPiece.shape() == NoShape) {
@@ -183,7 +183,7 @@ void TTablero::timerEvent(QTimerEvent *event)
 }
 //! [17]
 
-//! [18]
+//Con este metodo limpiamos el tablero(frames)
 void TTablero::limpiarTablero()
 {
     for (int i = 0; i < altura * ancho; ++i)
@@ -241,7 +241,7 @@ void TTablero::piezaCaida(int dropHeight)
 }
 //! [23]
 
-//! [24]
+//Con este metodo removemos una linea que este llena, osea que el jugar logro conseguir completarla
 void TTablero::removeFullLines()
 {
     int numFullLines = 0;
@@ -287,7 +287,7 @@ void TTablero::removeFullLines()
 }
 //! [29]
 
-//! [30]
+//Con este metodo generamos la nueva pieza que para al frame de sgte pieza
 void TTablero::nuevaPieza()
 {
     curPiece = nextPiece;
@@ -308,6 +308,7 @@ void TTablero::nuevaPieza()
 //! [32]
 void TTablero::mostrarPiezaSiguiente()
 {
+    //En caso que la ventana de sgte pieza este vacia, generaremos una
     if (!siguientePieza)
         return;
 
