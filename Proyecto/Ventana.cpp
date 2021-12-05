@@ -42,6 +42,10 @@ TWindow::TWindow(QWidget *parent)
     botonBastard = new QPushButton(tr("&Modo Bastard"));
     botonBastard->setFocusPolicy(Qt::NoFocus);
 
+    // Creando el boton de activar Bastard Tetris
+    botonEasy = new QPushButton(tr("&Modo Facil"));
+    botonEasy->setFocusPolicy(Qt::NoFocus);
+
     // Creando el boton de salir
     botonSalir = new QPushButton(tr("&Salir de Partida"));
     botonSalir->setFocusPolicy(Qt::NoFocus);
@@ -50,17 +54,27 @@ TWindow::TWindow(QWidget *parent)
     botonPausar = new QPushButton(tr("&Pausar Partida"));
     botonPausar->setFocusPolicy(Qt::NoFocus);
 
+    // Creando el boton de activar Bastard Tetris
+    botonAyuda = new QPushButton(tr("&Ayuda"));
+    botonAyuda->setFocusPolicy(Qt::NoFocus);
+
     // Conexion de click del teclado con el boton de iniciar del tablero
     connect(botonIniciar, &QPushButton::clicked, tablero, &TTablero::iniciar);
 
     // Conexion de click del teclado con el boton de iniciar del tablero
     connect(botonBastard, &QPushButton::clicked, tablero, &TTablero::bastard);
 
+    // Conexion de click del teclado con el boton de iniciar del tablero
+    connect(botonEasy, &QPushButton::clicked, tablero, &TTablero::easy);
+
     // Conexion de click del teclado con el boton de salir del tablero
     connect(botonSalir , &QPushButton::clicked, qApp, &QCoreApplication::quit);
 
     // Conexion de click del teclado con el boton de pausar del tablero
     connect(botonPausar, &QPushButton::clicked, tablero, &TTablero::pausar);
+
+    // Conexion de click del teclado con el boton de pausar del tablero
+    connect(botonAyuda, &QPushButton::clicked, tablero, &TTablero::ayuda);
 
 #if __cplusplus >= 201402L
     connect(tablero, &TTablero::puntuacionCambiada,
@@ -85,13 +99,15 @@ TWindow::TWindow(QWidget *parent)
         layout->addWidget(nivel, 3, 0);
         layout->addWidget(botonIniciar, 4, 0);
         layout->addWidget(botonBastard, 5, 0);
-        layout->addWidget(tablero, 0, 1, 6, 1);
+        layout->addWidget(botonEasy, 6, 0);
+        layout->addWidget(tablero, 0, 1, 7, 1);
         layout->addWidget(crearLabel(tr("PUNTAJE ACTUAL")), 0, 2);
         layout->addWidget(puntuacion, 1, 2);
         layout->addWidget(crearLabel(tr("LINEAS ELIMINADAS")), 2, 2);
         layout->addWidget(linesLcd, 3, 2);
         layout->addWidget(botonSalir, 4, 2);
         layout->addWidget(botonPausar, 5, 2);
+        layout->addWidget(botonAyuda, 6, 2);
         setLayout(layout);
 
         setWindowTitle(tr("Juego Tetriz - Tecnologia de Objetos"));
