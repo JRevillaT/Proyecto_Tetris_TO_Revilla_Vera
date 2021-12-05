@@ -35,19 +35,26 @@ TWindow::TWindow(QWidget *parent)
     linesLcd->setSegmentStyle(QLCDNumber::Filled);
 
     // Creando el boton de iniciar
-    botonIniciar = new QPushButton(tr("&Start"));
+    botonIniciar = new QPushButton(tr("&Iniciar Partida"));
     botonIniciar->setFocusPolicy(Qt::NoFocus);
 
+    // Creando el boton de activar Bastard Tetris
+    botonBastard = new QPushButton(tr("&Modo Bastard"));
+    botonBastard->setFocusPolicy(Qt::NoFocus);
+
     // Creando el boton de salir
-    botonSalir = new QPushButton(tr("&Quit"));
+    botonSalir = new QPushButton(tr("&Salir de Partida"));
     botonSalir->setFocusPolicy(Qt::NoFocus);
 
     // Creando el boton de pausar
-    botonPausar = new QPushButton(tr("&Pause"));
+    botonPausar = new QPushButton(tr("&Pausar Partida"));
     botonPausar->setFocusPolicy(Qt::NoFocus);
 
     // Conexion de click del teclado con el boton de iniciar del tablero
     connect(botonIniciar, &QPushButton::clicked, tablero, &TTablero::iniciar);
+
+    // Conexion de click del teclado con el boton de iniciar del tablero
+    connect(botonBastard, &QPushButton::clicked, tablero, &TTablero::bastard);
 
     // Conexion de click del teclado con el boton de salir del tablero
     connect(botonSalir , &QPushButton::clicked, qApp, &QCoreApplication::quit);
@@ -72,22 +79,23 @@ TWindow::TWindow(QWidget *parent)
 #endif
 
     QGridLayout *layout = new QGridLayout;
-    layout->addWidget(crearLabel(tr("NEXT")), 0, 0);
-    layout->addWidget(siguientePieza, 1, 0);
-    layout->addWidget(crearLabel(tr("LEVEL")), 2, 0);
-    layout->addWidget(nivel, 3, 0);
-    layout->addWidget(botonIniciar, 4, 0);
-    layout->addWidget(tablero, 0, 1, 6, 1);
-    layout->addWidget(crearLabel(tr("SCORE")), 0, 2);
-    layout->addWidget(puntuacion, 1, 2);
-    layout->addWidget(crearLabel(tr("LINES REMOVED")), 2, 2);
-    layout->addWidget(linesLcd, 3, 2);
-    layout->addWidget(botonSalir, 4, 2);
-    layout->addWidget(botonPausar, 5, 2);
-    setLayout(layout);
+        layout->addWidget(crearLabel(tr("PIEZA SIGUIENTE")), 0, 0);
+        layout->addWidget(siguientePieza, 1, 0);
+        layout->addWidget(crearLabel(tr("NIVEL")), 2, 0);
+        layout->addWidget(nivel, 3, 0);
+        layout->addWidget(botonIniciar, 4, 0);
+        layout->addWidget(botonBastard, 5, 0);
+        layout->addWidget(tablero, 0, 1, 6, 1);
+        layout->addWidget(crearLabel(tr("PUNTAJE ACTUAL")), 0, 2);
+        layout->addWidget(puntuacion, 1, 2);
+        layout->addWidget(crearLabel(tr("LINEAS ELIMINADAS")), 2, 2);
+        layout->addWidget(linesLcd, 3, 2);
+        layout->addWidget(botonSalir, 4, 2);
+        layout->addWidget(botonPausar, 5, 2);
+        setLayout(layout);
 
-    setWindowTitle(tr("Tetrix"));
-    resize(550, 370);
+        setWindowTitle(tr("Juego Tetriz - Tecnologia de Objetos"));
+        resize(550, 370);
 }
 
 QLabel *TWindow::crearLabel(const QString &text){
