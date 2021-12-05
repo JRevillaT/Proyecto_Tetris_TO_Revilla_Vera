@@ -46,6 +46,8 @@ private:
     QPushButton *botonPausar;  // Boton de pausar juego
 
     QPushButton *botonBastard; // Boton de activar modo Bastard
+    QPushButton *botonEasy; // Boton activar modo Easy
+    QPushButton *botonAyuda; // Boton ver ayuda
 };
 
 
