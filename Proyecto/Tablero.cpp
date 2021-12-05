@@ -85,13 +85,29 @@ void TTablero::pausar()
 //! [5]
 }
 
-void TTablero::bastard()
-{
+void TTablero::bastard(){
 
 }
 
+// Modo easy para cambiar la ficha a conveniencia del usuario
 void TTablero::easy(){
+    if (enPausa)
+        return;
 
+    empezar = true;
+    isWaitingAfterLine = false;
+    numLinesRemoved = 0;
+    numPiecesDropped = 0;
+    score = 0;
+    nivel = 1;
+    limpiarTablero();
+
+    emit lineasEliminadas(numLinesRemoved);
+    emit puntuacionCambiada(score);
+    emit nivelCambiado(nivel);
+
+    nuevaPieza();
+    temporizador.start(tiempoDeEspera(), this);
 }
 
 void TTablero::ayuda(){
@@ -168,8 +184,13 @@ void TTablero::keyPressEvent(QKeyEvent *event)
     case Qt::Key_Space:
         despligue();
         break;
-    case Qt::Key_D:
+    case Qt::Key_D: // Para cambiar aleatoriamente la pieza en modo easy
         oneLineDown();
+        break;
+
+    // POR APROBARSE-----------------------------------------------------
+    case Qt::Key_A:
+        nuevaPieza();
         break;
     default:
         QFrame::keyPressEvent(event);
