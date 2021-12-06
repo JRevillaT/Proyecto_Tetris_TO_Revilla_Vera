@@ -83,6 +83,7 @@ void TPieza::setFormaBastard(formaDeMatriz shape){
             coordenadas[i][j] = coordsTable[shape][i][j];
     }
     pieza = shape; // Asignamos el nuevo valor
+    qDebug() << "Se asigno la forma";
 
 }
 

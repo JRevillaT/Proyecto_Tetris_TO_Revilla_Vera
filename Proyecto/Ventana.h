@@ -8,6 +8,7 @@ class QLCDNumber;
 class QLabel;
 class QPushButton;
 QT_END_NAMESPACE
+//template <class T> //identificador de tipo: T
 class TTablero;
 
 /*
@@ -22,7 +23,7 @@ class TTablero;
  * Esta clase se utiliza para mostrar la informaciÃ³n del juego y contiene el Ã¡rea de juego
  * en la cual vamos a trabajar.
  */
-
+//template <class T> //identificador de tipo: T
 class TWindow : public QWidget{
     Q_OBJECT
 

@@ -1,6 +1,8 @@
 #ifndef PIEZA_H
 #define PIEZA_H
 
+#include <iostream>
+
 enum formaDeMatriz { NoShape, ZShape, SShape, LineShape, TShape, SquareShape,
                    LShape, MirroredLShape };
 
@@ -17,7 +19,7 @@ enum formaDeMatriz { NoShape, ZShape, SShape, LineShape, TShape, SquareShape,
  * incluyendo su forma, posicion y el rango de posiciones que puede ocupar en el tablero
  * para asi no poder complicarse al momento de que la pieza colisione.
 */
-
+//template <class T> //identificador de tipo: T
 class TPieza // Creando clase TPieza
 {
 public:
@@ -39,6 +41,21 @@ public:
     int maxY() const;
     TPieza rotarIzquierda() const; // Metodo que rota la pieza a la izquierda
     TPieza rotarDerecha() const; // Metodo que rota la pieza a la derecha
+
+    //Sobrecarga de Operadores
+
+    friend bool operator==(const TPieza& s, const TPieza& a){
+        return s.shape() == a.shape();
+    }
+
+    friend bool operator!=(const TPieza& s, const TPieza& a){
+        return !(s.shape() == a.shape());
+    }
+
+    friend std::ostream& operator<<(std::ostream& output, const TPieza& v){
+        output <<""<<v.shape()<<", ";
+        return output;
+    }
 
 private:
     // Metodo set para edicion de las coordenadas en X
