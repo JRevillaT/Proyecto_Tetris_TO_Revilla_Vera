@@ -214,11 +214,11 @@ void TTablero::keyPressEvent(QKeyEvent *event)
     case Qt::Key_Space:
         despligue();
         break;
-    case Qt::Key_X: // Para cambiar aleatoriamente la pieza en modo easy
+    case Qt::Key_X:
         oneLineDown();
         break;
 
-    // POR APROBARSE-----------------------------------------------------
+    //Teclas para modos especiales especiales
     case Qt::Key_Z:
         nuevaPieza();
         break;
@@ -389,12 +389,12 @@ void TTablero::nuevaPiezaBastard()
 }
 //! [31]
 
-//! [32]
+
 void TTablero::mostrarPiezaSiguiente()
 {
     //En caso que la ventana de sgte pieza este vacia, generaremos una
-    if (!siguientePieza)
-        return;
+    /*if (!siguientePieza)
+        return;*/
 
     int dx = nextPiece.maxX() - nextPiece.minX() + 1;
     int dy = nextPiece.maxY() - nextPiece.minY() + 1;
@@ -410,11 +410,10 @@ void TTablero::mostrarPiezaSiguiente()
                    nextPiece.shape());
     }
     siguientePieza->setPixmap(pixmap);
-//! [32] //! [33]
 }
-//! [33]
 
-//! [34]
+
+
 bool TTablero::movimiento(const TPieza &newPiece, int newX, int newY)
 {
     for (int i = 0; i < 4; ++i) {
@@ -425,24 +424,19 @@ bool TTablero::movimiento(const TPieza &newPiece, int newX, int newY)
         if (shapeAt(x, y) != NoShape)
             return false;
     }
-//! [34]
 
-//! [35]
     curPiece = newPiece;
     curX = newX;
     curY = newY;
     update();
     return true;
 }
-//! [35]
 
-//! [36]
+
 void TTablero::dibujar(QPainter &painter, int x, int y, formaDeMatriz shape)
 {
     //Matriz de colores hexadecimales
     static constexpr QRgb colorTable[8] = {
-        //0x000000, 0xCC6666, 0x66CC66, 0x6666CC,
-        //0xCCCC66, 0xCC66CC, 0x66CCCC, 0x5C5353
         0x000000, 0xbd1111, 0x24d424, 0x1c1cd9,
         0xa8a832, 0xbd17bd, 0x24d6d6, 0x5C5353
     };
@@ -462,5 +456,3 @@ void TTablero::dibujar(QPainter &painter, int x, int y, formaDeMatriz shape)
     painter.drawLine(x + anchoCuadrado() - 1, y + alturaCuadrado() - 1,
                      x + anchoCuadrado() - 1, y + 1);
 }
-//! [36]
-///////////////////Cambio -10
