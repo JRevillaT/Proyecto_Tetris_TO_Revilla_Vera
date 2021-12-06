@@ -19,6 +19,7 @@ TTablero::TTablero(QWidget *parent)
 {
     setFrameStyle(QFrame::Panel | QFrame::Sunken);
     setFocusPolicy(Qt::StrongFocus);
+    setStyleSheet("background-color:black;");
     limpiarTablero();
     //elegimos modo
 

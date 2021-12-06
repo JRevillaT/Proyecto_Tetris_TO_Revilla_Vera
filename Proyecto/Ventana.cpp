@@ -21,18 +21,22 @@ TWindow::TWindow(QWidget *parent)
     siguientePieza = new QLabel;
     siguientePieza->setFrameStyle(QFrame::Box | QFrame::Raised);
     siguientePieza->setAlignment(Qt::AlignCenter);
+    siguientePieza->setStyleSheet("background-color:black;");
     // Asignando la siguiente pieza en el rectangulo del tablero
     tablero->setPiezaSiguiente(siguientePieza);
 
     // Creando el campo de puntuacion
     puntuacion = new QLCDNumber(5);
     puntuacion->setSegmentStyle(QLCDNumber::Filled);
+    puntuacion->setStyleSheet("background-color:white;");
 
     // Creando el campo de nivel
     nivel = new QLCDNumber(2);
     nivel->setSegmentStyle(QLCDNumber::Filled);
+    nivel->setStyleSheet("background-color:white;");
     linesLcd = new QLCDNumber(5);
     linesLcd->setSegmentStyle(QLCDNumber::Filled);
+    linesLcd->setStyleSheet("background-color:white;");
 
     // Creando el boton de iniciar
     botonIniciar = new QPushButton(tr("&Iniciar Partida"));
