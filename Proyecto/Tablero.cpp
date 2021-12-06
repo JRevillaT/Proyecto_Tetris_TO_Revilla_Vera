@@ -3,6 +3,7 @@
 #include <QKeyEvent>
 #include <QLabel>
 #include <QPainter>
+#include <QMessageBox>
 
 /*
  * Nombres:
@@ -19,8 +20,12 @@ TTablero::TTablero(QWidget *parent)
     setFrameStyle(QFrame::Panel | QFrame::Sunken);
     setFocusPolicy(Qt::StrongFocus);
     limpiarTablero();
+    //elegimos modo
 
-    nextPiece.setFormaAleatoria();
+    if(bastardMode == true)
+        nextPiece.setFormaAleatoriaBastard();
+    else if(bastardMode == false)
+        nextPiece.setFormaAleatoria();
 }
 //! [0]
 
@@ -86,11 +91,29 @@ void TTablero::pausar()
 }
 
 void TTablero::bastard(){
+    if (enPausa)
+        return;
 
+    empezar = true;
+    isWaitingAfterLine = false;
+    numLinesRemoved = 0;
+    numPiecesDropped = 0;
+    score = 0;
+    nivel = 1;
+    limpiarTablero();
+    bastardMode=true;
+
+    emit lineasEliminadas(numLinesRemoved);
+    emit puntuacionCambiada(score);
+    emit nivelCambiado(nivel);
+
+    nuevaPiezaBastard();
+    temporizador.start(tiempoDeEspera(), this);
 }
 
 // Modo easy para cambiar la ficha a conveniencia del usuario
 void TTablero::easy(){
+    bastardMode=false;
     if (enPausa)
         return;
 
@@ -109,6 +132,7 @@ void TTablero::easy(){
     nuevaPieza();
     temporizador.start(tiempoDeEspera(), this);
 }
+
 
 // Funcion para mostrar el mensaje de ayuda al hacer click
 void TTablero::ayuda(){
@@ -327,13 +351,35 @@ void TTablero::removeFullLines()
 void TTablero::nuevaPieza()
 {
     curPiece = nextPiece;
-    nextPiece.setFormaAleatoria();
+
+    if(bastardMode == true)
+        nextPiece.setFormaAleatoriaBastard();
+    else if(bastardMode == false)
+        nextPiece.setFormaAleatoria();
+
+    //nextPiece.setFormaAleatoria();
     mostrarPiezaSiguiente();
     curX = ancho / 2 + 1;
     curY = altura - 1 + curPiece.minY();
 
     if (!movimiento(curPiece, curX, curY)) {
         curPiece.setForma(NoShape);
+        temporizador.stop();
+        empezar = false;
+    }
+//! [30] //! [31]
+}
+
+void TTablero::nuevaPiezaBastard()
+{
+    curPiece = nextPiece;
+    nextPiece.setFormaAleatoriaBastard();
+    mostrarPiezaSiguiente();
+    curX = ancho / 2 + 1;
+    curY = altura - 1 + curPiece.minY();
+
+    if (!movimiento(curPiece, curX, curY)) {
+        curPiece.setFormaBastard(NoShape);
         temporizador.stop();
         empezar = false;
     }

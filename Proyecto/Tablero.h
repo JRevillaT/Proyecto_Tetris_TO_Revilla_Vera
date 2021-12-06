@@ -21,7 +21,7 @@ QT_END_NAMESPACE
  *
  *  Repositorio: https://github.com/JRevillaT/Proyecto_Tetris_TO_Revilla_Vera
  */
-
+//template <class T> //identificador de tipo: T
 class TTablero : public QFrame // Creacion de la clase TTablero
 {
     Q_OBJECT
@@ -73,6 +73,7 @@ private:
     void piezaCaida(int dropHeight); // Pieza en caida
     void removeFullLines();
     void nuevaPieza(); // Generando la nueva pieza
+    void nuevaPiezaBastard(); // Generando la nueva pieza tipo Bastard
     void mostrarPiezaSiguiente();// Mostrando pieza aleatoria siguiente
     bool movimiento(const TPieza &newPiece, int newX, int newY);
     void dibujar(QPainter &painter, int x, int y, formaDeMatriz shape);
@@ -92,6 +93,9 @@ private:
     int score;
     int nivel;
     formaDeMatriz campoTablero[ancho * altura];
+
+    //variables adicionales
+    bool bastardMode = false;
 };
 
 #endif

@@ -24,7 +24,9 @@ public:
     TPieza() { setForma(NoShape); } //Inicializacion
 
     void setFormaAleatoria();
+    void setFormaAleatoriaBastard();
     void setForma(formaDeMatriz shape);
+    void setFormaBastard(formaDeMatriz shape);
 
     formaDeMatriz shape() const { return pieza; }
     // Retorno de Coordenadas de las piezas actuales
