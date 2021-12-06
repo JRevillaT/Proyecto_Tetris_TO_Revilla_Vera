@@ -24,16 +24,7 @@ void TPieza::setFormaAleatoriaBastard()//7
 
 void TPieza::setForma(formaDeMatriz shape){
     // Crearemos los valores de las coordenadas del tablero de forma estatica
-    /*static constexpr int coordsTable[8][4][2] = {
-        { { 0, 0 },   { 0, 0 },   { 0, 0 },   { 0, 0 } },
-        { { 0, -1 },  { 0, 0 },   { -1, 0 },  { -1, 1 } },
-        { { 0, -1 },  { 0, 0 },   { 1, 0 },   { 1, 1 } },
-        { { 0, -1 },  { 0, 0 },   { 0, 1 },   { 0, 2 } },
-        { { -1, 0 },  { 0, 0 },   { 1, 0 },   { 0, 1 } },
-        { { 0, 0 },   { 1, 0 },   { 0, 1 },   { 1, 1 } },
-        { { -1, -1 }, { 0, -1 },  { 0, 0 },   { 0, 1 } },
-        { { 1, -1 },  { 0, -1 },  { 0, 0 },   { 0, 1 } }
-    };*/
+
     static constexpr int coordsTable[8][4][2] = {
         { { 0, 0 },   { 0, 0 },   { 0, 0 },   { 0, 0 } },
         { { 0, -1 },  { 0, 0 },   { -1, 0 },  { -1, 1 } },
@@ -55,16 +46,6 @@ void TPieza::setForma(formaDeMatriz shape){
 
 void TPieza::setFormaBastard(formaDeMatriz shape){
     // Crearemos los valores de las coordenadas del tablero de forma estatica
-    /*static constexpr int coordsTable[8][4][2] = {
-        { { 0, 0 },   { 1, 0 },   { 0, 0 },   { 0, 0 } },
-        { { 0, -1 },  { 1, 0 },   { -1, 0 },  { -1, 1 } },
-        { { 0, -1 },  { 1, 0 },   { 1, 0 },   { 1, 1 } },
-        { { 0, -1 },  { 1, 0 },   { 0, 1 },   { 0, 2 } },
-        { { -1, 0 },  { 1, 0 },   { 1, 0 },   { 0, 1 } },
-        { { 0, 0 },   { 1, 0 },   { 0, 1 },   { 1, 1 } },
-        { { -1, -1 }, { 0, -1 },  { 0, 0 },   { 0, 1 } },
-        { { 1, -1 },  { 0, -1 },  { 0, 0 },   { 0, 1 } }
-    };*/
 
     static constexpr int coordsTable[8][4][2] = {
         { { 0, 0 },   { 1, 0 },   { 0, 0 },   { 0, 0 } },

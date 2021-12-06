@@ -351,7 +351,7 @@ void TTablero::nuevaPieza()
     else if(bastardMode == false)
         nextPiece.setFormaAleatoria();
 
-    //nextPiece.setFormaAleatoria();
+
     mostrarPiezaSiguiente();
     curX = ancho / 2 + 1;
     curY = altura - 1 + curPiece.minY();
@@ -377,9 +377,7 @@ void TTablero::nuevaPiezaBastard()
         temporizador.stop();
         empezar = false;
     }
-//! [30] //! [31]
 }
-//! [31]
 
 
 void TTablero::mostrarPiezaSiguiente()
