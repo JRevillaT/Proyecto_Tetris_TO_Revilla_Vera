@@ -10,4 +10,5 @@ Aqui se desarrollara el proyecto 1 del curso de Tecnologia de Objetos
 Img 1. Intefaz del juego
 
 ![image](https://user-images.githubusercontent.com/67451304/144800051-42d7b1c8-1419-49eb-b147-285e15bb7058.png)
+
 Img 2. Ejecucion del juego
