@@ -27,14 +27,13 @@ TTablero::TTablero(QWidget *parent)
     else if(bastardMode == false)
         nextPiece.setFormaAleatoria();
 }
-//! [0]
+
 
 //Aqui pasaremos la sgte pieza(del frame de sgte a pieza al tablero de juego)
 void TTablero::setPiezaSiguiente(QLabel *label)
 {
     siguientePieza = label;
 }
-//! [1]
 
 //Aqui definimos tanto el largo como el acho del cubito que forma la figura
 QSize TTablero::sizeHint() const
@@ -44,12 +43,12 @@ QSize TTablero::sizeHint() const
 }
 
 QSize TTablero::minimumSizeHint() const
-//! [2] //! [3]
+
 {
     return QSize(ancho * 5 + frameWidth() * 2,
                  altura * 5 + frameWidth() * 2);
 }
-//! [3]
+
 
 //Al iniciar el juego todos los valores se deben iniciar en 0, asi como definir las cantidades como la puntuacion o lineas eliminadas iniciales en 0
 void TTablero::iniciar()
@@ -72,7 +71,7 @@ void TTablero::iniciar()
     nuevaPieza();
     temporizador.start(tiempoDeEspera(), this);
 }
-//! [4]
+
 
 //Matodo para pausar el tablero
 void TTablero::pausar()
@@ -87,7 +86,7 @@ void TTablero::pausar()
         temporizador.start(tiempoDeEspera(), this);
     }
     update();
-//! [5]
+
 }
 
 void TTablero::bastard(){
@@ -139,23 +138,20 @@ void TTablero::ayuda(){
     QString text = "Ventana de Ayuda\nPara saber mas acerca de como usar este juego y su implementacion vaya al siguiente enlace:\nhttps://acortar.link/3dfsZb";
     QMessageBox::information(this, "Ayuda de Tetris", text, QMessageBox::Ok);
 }
-//! [6]
 
-//! [7]
 void TTablero::paintEvent(QPaintEvent *event)
 {
     QFrame::paintEvent(event);
 
     QPainter painter(this);
     QRect rect = contentsRect();
-//! [7]
 
     if (enPausa) {
         painter.drawText(rect, Qt::AlignCenter, tr("Juego Pausado"));
         return;
     }
 
-//! [8]
+
     int boardTop = rect.bottom() - altura*alturaCuadrado();
 
     for (int i = 0; i < altura; ++i) {
@@ -165,11 +161,8 @@ void TTablero::paintEvent(QPaintEvent *event)
                 dibujar(painter, rect.left() + j * anchoCuadrado(),
                            boardTop + i * alturaCuadrado(), shape);
         }
-//! [8] //! [9]
     }
-//! [9]
 
-//! [10]
     if (curPiece.shape() != NoShape) {
         for (int i = 0; i < 4; ++i) {
             int x = curX + curPiece.x(i);
@@ -178,11 +171,11 @@ void TTablero::paintEvent(QPaintEvent *event)
                        boardTop + (altura - y - 1) * alturaCuadrado(),
                        curPiece.shape());
         }
-//! [10] //! [11]
+
     }
-//! [11] //! [12]
+
 }
-//! [12]
+
 
 //Con este metodo controlamos los eventos que suceden cuando presionamos las teclas de juego
 void TTablero::keyPressEvent(QKeyEvent *event)
@@ -191,9 +184,7 @@ void TTablero::keyPressEvent(QKeyEvent *event)
         QFrame::keyPressEvent(event);
         return;
     }
-//! [13]
 
-//! [14]
     switch (event->key()) {
     case Qt::Key_Left:
     case Qt::Key_A:
@@ -225,10 +216,10 @@ void TTablero::keyPressEvent(QKeyEvent *event)
     default:
         QFrame::keyPressEvent(event);
     }
-//! [14]
+
 }
 
-//! [15]
+
 void TTablero::timerEvent(QTimerEvent *event)
 {
     if (event->timerId() == temporizador.timerId()) {
@@ -241,11 +232,11 @@ void TTablero::timerEvent(QTimerEvent *event)
         }
     } else {
         QFrame::timerEvent(event);
-//! [15] //! [16]
+
     }
-//! [16] //! [17]
+
 }
-//! [17]
+
 
 //Con este metodo limpiamos el tablero(frames)
 void TTablero::limpiarTablero()
@@ -265,19 +256,18 @@ void TTablero::despligue()
         ++dropHeight;
     }
     piezaCaida(dropHeight);
-//! [19] //! [20]
-}
-//! [20]
 
-//! [21]
+}
+
+
 void TTablero::oneLineDown()
 {
     if (!movimiento(curPiece, curX, curY - 1))
         piezaCaida(0);
 }
-//! [21]
 
-//! [22]
+
+
 void TTablero::piezaCaida(int dropHeight)
 {
     for (int i = 0; i < 4; ++i) {
@@ -299,15 +289,16 @@ void TTablero::piezaCaida(int dropHeight)
 
     if (!isWaitingAfterLine)
         nuevaPieza();
-//! [22] //! [23]
+
 }
-//! [23]
+
 
 //Con este metodo removemos una linea que este llena, osea que el jugar logro conseguir completarla
 void TTablero::removeFullLines()
 {
     int numFullLines = 0;
 
+    //Recorremos el board como una matriz, fila por fila
     for (int i = altura - 1; i >= 0; --i) {
         bool lineIsFull = true;
 
@@ -317,23 +308,24 @@ void TTablero::removeFullLines()
                 break;
             }
         }
-
+        //Si encuentra una fila llena, entonces
         if (lineIsFull) {
-//! [24] //! [25]
+
             ++numFullLines;
             for (int k = i; k < altura - 1; ++k) {
                 for (int j = 0; j < ancho; ++j)
+                    //Entonces reemplazamos en la sgte fila
                     shapeAt(j, k) = shapeAt(j, k + 1);
             }
-//! [25] //! [26]
+
             for (int j = 0; j < ancho; ++j)
                 shapeAt(j, altura - 1) = NoShape;
         }
-//! [26] //! [27]
-    }
-//! [27]
 
-//! [28]
+    }
+
+
+
     if (numFullLines > 0) {
         numLinesRemoved += numFullLines;
         score += 10 * numFullLines;
@@ -345,9 +337,9 @@ void TTablero::removeFullLines()
         curPiece.setForma(NoShape);
         update();
     }
-//! [28] //! [29]
+
 }
-//! [29]
+
 
 //Con este metodo generamos la nueva pieza que para al frame de sgte pieza
 void TTablero::nuevaPieza()
@@ -369,7 +361,7 @@ void TTablero::nuevaPieza()
         temporizador.stop();
         empezar = false;
     }
-//! [30] //! [31]
+
 }
 
 void TTablero::nuevaPiezaBastard()
