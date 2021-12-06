@@ -116,7 +116,8 @@ TWindow::TWindow(QWidget *parent)
 
 QLabel *TWindow::crearLabel(const QString &text){
     QLabel *label = new QLabel(text);
-    label->setAlignment(Qt::AlignHCenter | Qt::AlignBottom);
     return label;
 }
+
+
 

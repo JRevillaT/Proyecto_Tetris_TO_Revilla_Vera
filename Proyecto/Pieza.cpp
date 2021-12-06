@@ -121,13 +121,13 @@ int TPieza::maxY() const{
 
 // Metodo para rotar a la izquierda la pieza
 TPieza TPieza::rotarIzquierda() const{
-    // Si la pieza a evaluar es igual a "squareShape", retornara el valor de la direccion del puntero
+    // Si la pieza a evaluar es "squareShape", retornara el mismo
     if (pieza == SquareShape)
         return *this;
 
     TPieza result;
     result.pieza = pieza; // Asignamos el valor en pieza
-    for (int i = 0; i < 4; ++i) { // Recorremos maximo 3 iteraciones para la rotacion
+    for (int i = 0; i < 4; ++i) { // Recorremos la pieza
         result.setX(i, y(i)); // Asignamos los valores actuales de la coordenada en la posicion X del tablero
         result.setY(i, -x(i)); // Asignamos los valores actuales de la coordenada en la posicion Y del tablero
     }

@@ -196,26 +196,30 @@ void TTablero::keyPressEvent(QKeyEvent *event)
 //! [14]
     switch (event->key()) {
     case Qt::Key_Left:
+    case Qt::Key_A:
         movimiento(curPiece, curX - 1, curY);
         break;
     case Qt::Key_Right:
+    case Qt::Key_D:
         movimiento(curPiece, curX + 1, curY);
         break;
     case Qt::Key_Down:
+    case Qt::Key_S:
         movimiento(curPiece.rotarDerecha(), curX, curY);
         break;
     case Qt::Key_Up:
+    case Qt::Key_W:
         movimiento(curPiece.rotarIzquierda(), curX, curY);
         break;
     case Qt::Key_Space:
         despligue();
         break;
-    case Qt::Key_D: // Para cambiar aleatoriamente la pieza en modo easy
+    case Qt::Key_X: // Para cambiar aleatoriamente la pieza en modo easy
         oneLineDown();
         break;
 
     // POR APROBARSE-----------------------------------------------------
-    case Qt::Key_A:
+    case Qt::Key_Z:
         nuevaPieza();
         break;
     default:
@@ -249,9 +253,7 @@ void TTablero::limpiarTablero()
     for (int i = 0; i < altura * ancho; ++i)
         campoTablero[i] = NoShape;
 }
-//! [18]
 
-//! [19]
 void TTablero::despligue()
 {
     int dropHeight = 0;
@@ -285,7 +287,7 @@ void TTablero::piezaCaida(int dropHeight)
     }
 
     ++numPiecesDropped;
-    if (numPiecesDropped % 25 == 0) {
+    if (numPiecesDropped == 25) {
         ++nivel;
         temporizador.start(tiempoDeEspera(), this);
         emit nivelCambiado(nivel);

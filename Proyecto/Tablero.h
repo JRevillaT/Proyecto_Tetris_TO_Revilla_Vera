@@ -88,10 +88,10 @@ private:
     TPieza nextPiece;
     int curX;
     int curY;
-    int numLinesRemoved;
-    int numPiecesDropped;
-    int score;
-    int nivel;
+    uint numLinesRemoved;
+    uint numPiecesDropped;
+    uint score;
+    uint nivel;
     formaDeMatriz campoTablero[ancho * altura];
 
     //variables adicionales
