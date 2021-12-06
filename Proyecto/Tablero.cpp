@@ -19,7 +19,7 @@ TTablero::TTablero(QWidget *parent)
 {
     setFrameStyle(QFrame::Panel | QFrame::Sunken);
     setFocusPolicy(Qt::StrongFocus);
-    setStyleSheet("background-color:black;");
+    setStyleSheet("background-color:gray;");
     limpiarTablero();
     //elegimos modo
 
@@ -138,6 +138,7 @@ void TTablero::easy(){
 void TTablero::ayuda(){
     QString text = "Ventana de Ayuda\nPara saber mas acerca de como usar este juego y su implementacion vaya al siguiente enlace:\nhttps://acortar.link/3dfsZb";
     QMessageBox::information(this, "Ayuda de Tetris", text, QMessageBox::Ok);
+
 }
 
 void TTablero::paintEvent(QPaintEvent *event)
